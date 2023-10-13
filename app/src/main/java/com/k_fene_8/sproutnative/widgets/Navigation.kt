@@ -1,6 +1,7 @@
 package com.k_fene_8.sproutnative.widgets
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
@@ -19,9 +20,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -40,45 +45,67 @@ fun Navigation() {
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
-    var selectedItem by remember { mutableStateOf(0) }
-    val barItems = listOf(
+    val screens = listOf(
         BottomNavBarItems.Home,
         BottomNavBarItems.Search,
-        BottomNavBarItems.Account
+        BottomNavBarItems.Account,
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
+
     NavigationBar {
-        barItems.forEachIndexed { index, barItem ->
-            val selected = selectedItem == index
-            NavigationBarItem(
-                selected = selected,
-                onClick = {
-                    selectedItem = index
-                    /* navigate to selected route */
-                },
-                icon = {
-                    Icon(
-                        imageVector = if (selected) barItem.selected else barItem.unselected,
-                        contentDescription = barItem.title
-                    )
-                },
-                label = { Text(text = barItem.title) },
-                alwaysShowLabel = true
+        screens.forEach { screen ->
+            AddItem(
+                screen = screen,
+                currentDestination = currentDestination,
+                navController = navController
             )
         }
     }
 }
 
-data class BarItem(
-    val title: String,
-    val selectedIcon: ImageVector,
-    val unselectedIcon: ImageVector,
-    val route: String
-)
-
+@Composable
+fun RowScope.AddItem(
+    screen: BottomNavBarItems,
+    currentDestination: NavDestination?,
+    navController: NavHostController
+) {
+    NavigationBarItem(
+        label = {
+            Text(text = screen.title)
+        },
+        icon = {
+            Icon(
+                imageVector = screen.selected,
+                contentDescription = "Navigation Icon"
+            )
+        },
+        selected = currentDestination?.hierarchy?.any {
+            it.route == screen.route
+        } == true,
+        onClick = {
+            navController.navigate(screen.route) {
+                popUpTo(navController.graph.findStartDestination().id)
+                launchSingleTop = true
+            }
+        }
+    )
+}
 @Preview
 @Composable
 fun NavigationBarPreview() {
     Navigation()
+}
+
+@Composable
+fun Home() {
+    Text(text = "Home")
+}
+@Composable
+fun Search() {
+    Text(text = "Search")
+}
+@Composable
+fun Account() {
+    Text(text = "Account")
 }
