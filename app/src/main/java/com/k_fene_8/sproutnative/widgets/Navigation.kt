@@ -1,29 +1,25 @@
 package com.k_fene_8.sproutnative.widgets
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Person
-import androidx.compose.material.icons.outlined.Search
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -38,11 +34,35 @@ fun Navigation() {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomNavigationBar(navController=navController) },
+        topBar = {
+            AppBar(navController = navController)
+        },
     ){
-        BottomNavGraph(navController = navController)
+            innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {BottomNavGraph(navController = navController)}
     }
 }
-
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppBar(navController: NavHostController) {
+    TopAppBar(
+        title = {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()
+            ){
+                Text(
+                    fontWeight = FontWeight.Bold,
+                    text = "sprout. 🌱")
+            }
+        }
+    )
+}
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     val screens = listOf(
@@ -54,9 +74,9 @@ fun BottomNavigationBar(navController: NavHostController) {
     val currentDestination = navBackStackEntry?.destination
 
     NavigationBar {
-        screens.forEach { screen ->
+        screens.forEach { navItem ->
             AddItem(
-                screen = screen,
+                navItem = navItem,
                 currentDestination = currentDestination,
                 navController = navController
             )
@@ -66,25 +86,26 @@ fun BottomNavigationBar(navController: NavHostController) {
 
 @Composable
 fun RowScope.AddItem(
-    screen: BottomNavBarItems,
+    navItem: BottomNavBarItems,
     currentDestination: NavDestination?,
     navController: NavHostController
 ) {
     NavigationBarItem(
         label = {
-            Text(text = screen.title)
+            Text(text = navItem.title)
         },
         icon = {
             Icon(
-                imageVector = screen.selected,
+                imageVector = navItem.selected,
                 contentDescription = "Navigation Icon"
             )
         },
         selected = currentDestination?.hierarchy?.any {
-            it.route == screen.route
+            it.route == navItem.route
         } == true,
         onClick = {
-            navController.navigate(screen.route) {
+            navController.navigate(navItem.route)
+            {
                 popUpTo(navController.graph.findStartDestination().id)
                 launchSingleTop = true
             }
@@ -95,17 +116,4 @@ fun RowScope.AddItem(
 @Composable
 fun NavigationBarPreview() {
     Navigation()
-}
-
-@Composable
-fun Home() {
-    Text(text = "Home")
-}
-@Composable
-fun Search() {
-    Text(text = "Search")
-}
-@Composable
-fun Account() {
-    Text(text = "Account")
 }

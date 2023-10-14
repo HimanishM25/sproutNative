@@ -1,13 +1,12 @@
 package com.k_fene_8.sproutnative.widgets
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import com.k_fene_8.sproutnative.screens.Account
+import com.k_fene_8.sproutnative.screens.Home
+import com.k_fene_8.sproutnative.screens.Search
 
 @Composable
 fun BottomNavGraph(navController: NavHostController){
