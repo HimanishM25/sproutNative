@@ -36,11 +36,10 @@ val currentTime: LocalTime = LocalTime.now()
 val hour: Int = currentTime.hour
 @RequiresApi(Build.VERSION_CODES.O)
 val colors = when (hour) {
-    in 0..5 -> listOf(Color.Blue, Color.Cyan)
-    in 6..11 -> listOf(Color.Cyan, Color.Yellow)
-    in 12..17 -> listOf(Color.Yellow, Color(0xFFFF8000))
-    in 18..23 -> listOf(Color(0xFFFF8000), Color.Red)
-    else -> listOf(Color.Black, Color.White)}
+    in 6..11 -> listOf(Color(0xff02167e), Color(0xff1aaad7 ))
+    in 12..17 -> listOf(Color(0xfff7f18e), Color(0xffffa20f ))
+    in 18..20 -> listOf(Color(0xffedae33), Color(0xff3b1d70 ))
+    else -> listOf(Color(0xff85929E), Color(0xff2E4053 ))}
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Home() {
