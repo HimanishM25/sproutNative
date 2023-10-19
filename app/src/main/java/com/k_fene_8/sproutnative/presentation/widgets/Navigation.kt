@@ -1,6 +1,8 @@
-package com.k_fene_8.sproutnative.widgets
+package com.k_fene_8.sproutnative.presentation.widgets
 
 import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
@@ -27,6 +29,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
+@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,7 +46,7 @@ fun Navigation() {
             modifier = Modifier
                 .padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {BottomNavGraph(navController = navController)}
+        ) { BottomNavGraph(navController = navController) }
     }
 }
 @OptIn(ExperimentalMaterial3Api::class)
@@ -112,6 +115,7 @@ fun RowScope.AddItem(
         }
     )
 }
+@RequiresApi(Build.VERSION_CODES.O)
 @Preview
 @Composable
 fun NavigationBarPreview() {

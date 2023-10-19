@@ -1,4 +1,4 @@
-package com.k_fene_8.sproutnative.screens
+package com.k_fene_8.sproutnative.presentation.screens
 
 import android.os.Build
 import androidx.annotation.RequiresApi
