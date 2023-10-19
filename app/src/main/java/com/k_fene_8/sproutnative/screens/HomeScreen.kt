@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -40,6 +41,8 @@ val colors = when (hour) {
     in 12..17 -> listOf(Color(0xfff7f18e), Color(0xffffa20f ))
     in 18..20 -> listOf(Color(0xffedae33), Color(0xff3b1d70 ))
     else -> listOf(Color(0xff85929E), Color(0xff2E4053 ))}
+
+
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun Home() {
@@ -76,7 +79,7 @@ fun Home() {
                     modifier = Modifier.padding(16.dp)
                 )
                 Text(
-                    text = hour.toString(),
+                    text = "°C",
                     color = Color.White,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
@@ -84,7 +87,7 @@ fun Home() {
                 )
             }
         }
-        Box(
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(15.dp))
@@ -95,7 +98,6 @@ fun Home() {
             Column {
                 Text(
                     text = "Get Recommendations",
-                    color = Color.Black,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(16.dp)
@@ -109,7 +111,7 @@ fun Home() {
                 )
                 Button(
                     onClick = { /*TODO*/ },
-                    colors= androidx.compose.material3.ButtonDefaults.buttonColors(
+                    colors= ButtonDefaults.buttonColors(
                         containerColor = Color(0xfff36b77),
                         contentColor = Color.White
                     ),
@@ -127,7 +129,7 @@ fun Home() {
                 }
             }
         }
-        Box(
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(15.dp))
@@ -139,7 +141,6 @@ fun Home() {
                 Column {
                     Text(
                         text = "Detect Ailments",
-                        color = Color.Black,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(16.dp)
