@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.absolutePadding
@@ -20,32 +19,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import java.time.LocalTime
+import com.k_fene_8.sproutnative.presentation.WeatherCard
+import com.k_fene_8.sproutnative.presentation.WeatherViewModel
 
-@RequiresApi(Build.VERSION_CODES.O)
-val currentTime: LocalTime = LocalTime.now()
 
-@RequiresApi(Build.VERSION_CODES.O)
-val hour: Int = currentTime.hour
-@RequiresApi(Build.VERSION_CODES.O)
-val colors = when (hour) {
-    in 6..11 -> listOf(Color(0xff02167e), Color(0xff1aaad7 ))
-    in 12..17 -> listOf(Color(0xfff7f18e), Color(0xffffa20f ))
-    in 18..20 -> listOf(Color(0xffedae33), Color(0xff3b1d70 ))
-    else -> listOf(Color(0xff85929E), Color(0xff2E4053 ))}
 
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun Home() {
+fun Home(viewModel: WeatherViewModel) {
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -57,43 +43,11 @@ fun Home() {
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(16.dp))
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(15.dp))
-                .background(
-                    Brush.linearGradient(
-                        colors = colors,
-                        start = Offset.Zero,
-                        end = Offset.Infinite,
-                        tileMode = TileMode.Clamp
-                    )
-                )
-        ) {
-            Column {
-                Text(
-                    text = "Today's Weather",
-                    color = Color.White,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(16.dp)
-                )
-                Text(
-                    text = "°C",
-                    color = Color.White,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(16.dp)
-                )
-            }
-        }
+        WeatherCard(state =viewModel.state)
         Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(15.dp))
-                .background(
-                    Color(0xffe5e5e5)
-                )
                 ){
             Column {
                 Text(
@@ -176,9 +130,3 @@ fun Home() {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-@Preview
-@Composable
-fun HomePreview() {
-    Home()
-}

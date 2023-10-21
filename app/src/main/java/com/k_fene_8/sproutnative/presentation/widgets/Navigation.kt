@@ -20,7 +20,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -28,17 +27,18 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.k_fene_8.sproutnative.presentation.WeatherViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Navigation() {
+fun Navigation(viewModel: WeatherViewModel) {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomNavigationBar(navController=navController) },
         topBar = {
-            AppBar(navController = navController)
+            AppBar()
         },
     ){
             innerPadding ->
@@ -46,12 +46,12 @@ fun Navigation() {
             modifier = Modifier
                 .padding(innerPadding),
             verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) { BottomNavGraph(navController = navController) }
+        ) { BottomNavGraph(navController = navController, viewModel = viewModel) }
     }
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppBar(navController: NavHostController) {
+fun AppBar() {
     TopAppBar(
         title = {
             Column(
@@ -114,10 +114,4 @@ fun RowScope.AddItem(
             }
         }
     )
-}
-@RequiresApi(Build.VERSION_CODES.O)
-@Preview
-@Composable
-fun NavigationBarPreview() {
-    Navigation()
 }
