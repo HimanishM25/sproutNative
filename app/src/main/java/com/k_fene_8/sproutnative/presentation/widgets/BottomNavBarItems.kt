@@ -1,4 +1,4 @@
-package com.k_fene_8.sproutnative.widgets
+package com.k_fene_8.sproutnative.presentation.widgets
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -15,21 +15,21 @@ sealed class BottomNavBarItems(
     val unselected:ImageVector,
     val selected:ImageVector,
 ){
-    object Home:BottomNavBarItems(
+    object Home: BottomNavBarItems(
         title = "Home",
         route = "home",
         selected = Icons.Filled.Home,
         unselected = Icons.Outlined.Home,
 
     )
-    object Search:BottomNavBarItems(
+    object Search: BottomNavBarItems(
         title = "Search",
         route = "search",
         selected = Icons.Filled.Search,
         unselected = Icons.Outlined.Search,
 
     )
-    object Account:BottomNavBarItems(
+    object Account: BottomNavBarItems(
         title = "Account",
         route = "account",
         selected = Icons.Filled.AccountCircle,
