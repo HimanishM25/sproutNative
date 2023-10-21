@@ -1,4 +1,4 @@
-package com.k_fene_8.sproutnative.presentation
+package com.k_fene_8.sproutnative.presentation.widgets
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -20,7 +20,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.k_fene_8.sproutnative.presentation.WeatherState
 import java.time.LocalTime
+import kotlin.math.roundToInt
 
 @RequiresApi(Build.VERSION_CODES.O)
 val currentTime: LocalTime = LocalTime.now()
@@ -29,8 +31,8 @@ val currentTime: LocalTime = LocalTime.now()
 val hour: Int = currentTime.hour
 @RequiresApi(Build.VERSION_CODES.O)
 val colors = when (hour) {
-    in 6..11 -> listOf(Color(0xff02167e), Color(0xff1aaad7 ))
-    in 12..17 -> listOf(Color(0xfff7f18e), Color(0xffffa20f ))
+    in 6..10 -> listOf(Color(0xff02167e), Color(0xff1aaad7 ))
+    in 11..17 -> listOf(Color(0xfff7f18e), Color(0xffffa20f ))
     in 18..20 -> listOf(Color(0xffedae33), Color(0xff3b1d70 ))
     else -> listOf(Color(0xff85929E), Color(0xff2E4053 ))}
 @RequiresApi(Build.VERSION_CODES.O)
@@ -72,7 +74,7 @@ fun WeatherCard(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ){
                     Text(
-                        text = "${data.temperatureCelsius}°C",
+                        text = "${data.temperatureCelsius.roundToInt()}°C",
                         fontSize = 40.sp,
                         color = Color.White,
                         fontWeight = FontWeight.Bold
