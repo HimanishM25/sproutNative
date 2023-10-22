@@ -1,4 +1,4 @@
-package com.k_fene_8.sproutnative.presentation.widgets
+package com.k_fene_8.sproutnative.presentation.bottom_navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle

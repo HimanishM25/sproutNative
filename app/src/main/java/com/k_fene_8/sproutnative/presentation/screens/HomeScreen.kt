@@ -25,8 +25,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.k_fene_8.sproutnative.presentation.WeatherViewModel
-import com.k_fene_8.sproutnative.presentation.widgets.WeatherCard
+import com.k_fene_8.sproutnative.presentation.weather.WeatherCard
+import com.k_fene_8.sproutnative.presentation.weather.WeatherViewModel
 
 
 

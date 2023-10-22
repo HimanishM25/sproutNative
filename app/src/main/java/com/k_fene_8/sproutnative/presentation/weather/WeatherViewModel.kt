@@ -1,4 +1,4 @@
-package com.k_fene_8.sproutnative.presentation
+package com.k_fene_8.sproutnative.presentation.weather
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

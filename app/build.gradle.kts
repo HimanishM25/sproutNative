@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 tasks.withType(type = org.jetbrains.kotlin.gradle.tasks.KaptGenerateStubs::class) {
@@ -71,6 +72,7 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material:1.6.0-alpha08")
     implementation("com.google.android.material:material:1.10.0")
+    implementation("com.google.firebase:firebase-auth:22.2.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -84,8 +86,10 @@ dependencies {
     kapt ("com.google.dagger:hilt-android-compiler:2.48")
     kapt("androidx.hilt:hilt-compiler:1.0.0")
 
-    // Location Services
+    // Google Mobile Services
     implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation ("com.google.firebase:firebase-auth-ktx:22.2.0")
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
 
     // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
@@ -109,5 +113,10 @@ dependencies {
     //Couroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    
+    //Runtime Compose
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
 
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.2.2")
 }

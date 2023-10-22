@@ -1,4 +1,4 @@
-package com.k_fene_8.sproutnative.presentation.widgets
+package com.k_fene_8.sproutnative.presentation.weather
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -20,7 +20,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.k_fene_8.sproutnative.presentation.WeatherState
 import java.time.LocalTime
 import kotlin.math.roundToInt
 
