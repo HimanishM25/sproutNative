@@ -10,7 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Surface
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.k_fene_8.sproutnative.presentation.bottom_navigation.Navigation
 import com.k_fene_8.sproutnative.presentation.weather.WeatherViewModel
