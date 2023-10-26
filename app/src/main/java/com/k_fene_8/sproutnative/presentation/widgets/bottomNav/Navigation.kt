@@ -1,4 +1,4 @@
-package com.k_fene_8.sproutnative.presentation.widgets
+package com.k_fene_8.sproutnative.presentation.widgets.bottomNav
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -27,7 +27,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.k_fene_8.sproutnative.presentation.WeatherViewModel
+import com.k_fene_8.sproutnative.presentation.widgets.weather.WeatherViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

@@ -1,4 +1,4 @@
-package com.k_fene_8.sproutnative.presentation
+package com.k_fene_8.sproutnative.presentation.widgets.weather
 
 import com.k_fene_8.sproutnative.domain.weather.WeatherInfo
 
