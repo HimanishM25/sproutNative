@@ -12,8 +12,8 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.k_fene_8.sproutnative.presentation.WeatherViewModel
-import com.k_fene_8.sproutnative.presentation.widgets.Navigation
+import com.k_fene_8.sproutnative.presentation.widgets.weather.WeatherViewModel
+import com.k_fene_8.sproutnative.presentation.widgets.bottomNav.Navigation
 import com.k_fene_8.sproutnative.ui.theme.SproutTheme
 import dagger.hilt.android.AndroidEntryPoint
 
