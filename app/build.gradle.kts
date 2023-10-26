@@ -113,7 +113,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
     
     //Runtime Compose
-    //implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
 
     //Coil
     implementation("io.coil-kt:coil-compose:2.2.2")
