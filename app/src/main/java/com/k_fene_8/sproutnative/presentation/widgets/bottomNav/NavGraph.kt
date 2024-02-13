@@ -6,10 +6,11 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.k_fene_8.sproutnative.presentation.widgets.weather.WeatherViewModel
 import com.k_fene_8.sproutnative.presentation.screens.Account
 import com.k_fene_8.sproutnative.presentation.screens.Home
-import com.k_fene_8.sproutnative.presentation.screens.Search
+import com.k_fene_8.sproutnative.presentation.screens.Scanner
+import com.k_fene_8.sproutnative.presentation.screens.SearchScreen
+import com.k_fene_8.sproutnative.presentation.widgets.weather.WeatherViewModel
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -17,13 +18,16 @@ import com.k_fene_8.sproutnative.presentation.screens.Search
 fun BottomNavGraph(navController: NavHostController, viewModel: WeatherViewModel){
     NavHost(navController = navController, startDestination = BottomNavBarItems.Home.route){
         composable(route= BottomNavBarItems.Home.route){
-            Home(viewModel = viewModel)
+            Home(viewModel = viewModel, navController = navController)
         }
         composable(route= BottomNavBarItems.Search.route){
-            Search()
+            SearchScreen()
         }
         composable(route= BottomNavBarItems.Account.route){
             Account()
+        }
+        composable("scanner"){
+            Scanner()
         }
     }
 }
